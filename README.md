@@ -9,7 +9,7 @@ uma opção, e não uma obrigação.
 ## ⚠️ Requirements
 
 Cucumber está disponível para a maioria das linguagens de programação convencionais. Recomendamos escolher uma implementação para a mesma plataforma ou linguagem de
-programação do código de produção. [online Installation](https://cucumber.io/docs/installation/) que oferece tutoriais e exemplos.
+programação do código de produção.
 
 Given – dado um contexto;
 When – quando acontecer um evento;
