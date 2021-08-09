@@ -8,7 +8,6 @@ import io.cucumber.java.pt.Quando;
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.SimpleEmail;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,8 +19,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import static org.junit.Assert.assertEquals;
+
 
 public class AprenderCucumberSteps {
+
+    private String authuser = System.getenv("ENVAUTHUSER");
+    private String authpwd = System.getenv("ENVAUTHPWD");
+    private String token = System.getenv("ENVTOKEN");
 
     @Dado("^que criei o arquivo  corretamente$")
     public void que_criei_o_arquivo_corretamente() throws Throwable {
@@ -49,7 +54,7 @@ public class AprenderCucumberSteps {
 
     @Então("^o valor do contador será (\\d+)$")
     public void o_valor_do_contador_será(int arg1) throws Throwable {
-        Assert.assertEquals(arg1, contador);
+        assertEquals(arg1, contador);
     }
 
     Date entrega = new Date();
@@ -81,15 +86,13 @@ public class AprenderCucumberSteps {
 
         DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         String dateFormatada = format.format(entrega);
-        Assert.assertEquals(date, dateFormatada);
+        assertEquals(date, dateFormatada);
     }
-
 
     @Dado("^que o ticket( especial)? é A.(\\d{3})$")
     public void que_o_ticket_é_af345(String tipo, String arg1) {
         
     }
-
 
     @Dado("que o valor da passagem é R$ {double}")
     public void que_o_valor_da_passagem_é_r$(Double double1) {
@@ -116,64 +119,65 @@ public class AprenderCucumberSteps {
 
     }
 
-//    WebDriver driver;
-//    @Dado("que o usuário esteja na página de login")
-//    public void que_o_usuário_esteja_na_página_de_login() {
-////        System Property for Edge driver
-//        System.setProperty("webdriver.edge.driver", "C:\\Users\\italo\\IdeaProjects\\cucumber-app\\drivers\\msedgedriver.exe");
-//
-////        Launch the Microsoft Edge browser.
-//        driver = new EdgeDriver();
-//
-//        driver.manage().window().maximize();
-//
-//        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//
-////        Open URL
-//        driver.get("https://twitter.com/login");
-//    }
-//
-//    @Dado("que o usuário clicou no botão esqueceu sua senha")
-//    public void que_o_usuário_clicou_no_botão_esqueceu_sua_senha() {
-//        WebElement element = driver.findElement(By.xpath("//body//a[1]"));
-//        element.click();
-//    }
-//
-//    @Dado("que o usuário informe o seu email")
-//    public void que_o_usuário_informe_o_seu_email() {
-//        driver.findElement(By.xpath("//input[@name='account_identifier']")).sendKeys("conta.teste0109002@gmail.com");
-//    }
-//
-//    @Quando("o usuário clicar no botão enviar")
-//    public void o_usuário_clicar_no_botão_enviar() {
-//        final String SUBMIT = "//input[@class='Button EdgeButton--primary EdgeButton']";
-//        driver.findElement(By.xpath(SUBMIT)).click();
-//    }
-//
-//    @Então("o token será enviado")
-//    public void o_token_será_enviado() {
-//        String authuser = "conta.teste0109002@gmail.com";
-//        String authpwd = "0109002conta.teste";
-//
-//        SimpleEmail email = new SimpleEmail();
-//        email.setHostName("smtp.gmail.com");
-//        email.setSmtpPort(465);
-//        email.setAuthenticator(new DefaultAuthenticator(authuser, authpwd));
-//
-//        email.setSSLOnConnect(true);
-//
-//        try {
-//            email.setFrom(authuser);
-//            email.setSubject("Recuperar senha Token");
-//            email.setMsg("NKHKOhpw4cqaPOJJ3Y4N1GjIdIUYXUWKxDXTJvK4NIv2PgpIRNPkjOHItRCb");
-//            email.addTo(authuser);
-//            email.send();
-//            System.out.println("Token enviado com sucesso!");
-//
-////          Close the driver
-//            driver.quit();
-//        }catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+    WebDriver driver;
+    @Dado("que o usuário esteja na página de login")
+    public void que_o_usuário_esteja_na_página_de_login() {
+//        System Property for Edge driver
+        System.setProperty("webdriver.edge.driver", "C:\\Users\\italo\\IdeaProjects\\cucumber-app\\drivers\\msedgedriver.exe");
+
+//         Launch the Microsoft Edge browser.
+        driver = new EdgeDriver();
+
+        driver.manage().window().maximize();
+
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+//        Open URL
+        driver.get("https://twitter.com/login");
+    }
+
+    @Dado("que o usuário clicou no botão esqueceu sua senha")
+    public void que_o_usuário_clicou_no_botão_esqueceu_sua_senha() {
+        WebElement element = driver.findElement(By.xpath("//body//a[1]"));
+        element.click();
+    }
+
+    @Dado("que o usuário informe o seu email")
+    public void que_o_usuário_informe_o_seu_email() {
+        driver.findElement(By.xpath("//input[@name='account_identifier']")).sendKeys(authuser);
+        assertEquals(authuser, authuser);
+    }
+
+    @Quando("o usuário clicar no botão enviar")
+    public void o_usuário_clicar_no_botão_enviar() {
+        final String SUBMIT = "//input[@class='Button EdgeButton--primary EdgeButton']";
+        driver.findElement(By.xpath(SUBMIT)).click();
+    }
+
+    @Então("o token será enviado")
+    public void o_token_será_enviado() {
+
+
+        SimpleEmail email = new SimpleEmail();
+        email.setHostName("smtp.gmail.com");
+        email.setSmtpPort(465);
+        email.setAuthenticator(new DefaultAuthenticator(authuser, authpwd));
+
+        email.setSSLOnConnect(true);
+
+        try {
+            email.setFrom(authuser);
+            email.setSubject("Recuperar senha Token");
+            email.setMsg(token);
+            assertEquals(token, token);
+            email.addTo(authuser);
+            email.send();
+            System.out.println("Token enviado com sucesso! :) excelente '-' -> ");
+
+//          Close the driver
+            driver.quit();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
