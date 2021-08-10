@@ -64,5 +64,5 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 🔗 Find me!
 - Linkedin: https://www.linkedin.com/in/italo-santos-dev/
-- Instagram: https://www.instagram.com/italosantossz/
+- Instagram: https://www.instagram.com/italosantsz/
 - Github: https://github.com/dev-italosantos
