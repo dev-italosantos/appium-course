@@ -13,7 +13,9 @@ uma opção, e não uma obrigação.
 * Um dispositivo Android (modo de depuração ativado) conectado ao Windows.
 * É necessário um dispositivo físico Android neste momento, porque a automação móvel está sendo executada, mediante, USB.
 
-Este aplicativo fornece exibição e controle de dispositivos Android conectados por USB (ou por TCP / IP). Não requer nenhum acesso root. Funciona em GNU / Linux, Windows e macOS. Para obter ajuda para começar a usar o scrcpy (v1.18) [online documentation](https://github.com/Genymobile/scrcpy), que oferece tutoriais e exemplos.
+Este aplicativo fornece exibição e controle de dispositivos Android conectados por USB (ou por TCP / IP). Não requer nenhum acesso root. Funciona em GNU / Linux, Windows e macOS.
+
+Para obter ajuda para começar a usar o scrcpy (v1.18) [online documentation](https://github.com/Genymobile/scrcpy), que oferece tutoriais e exemplos.
 
 ## ⚠️ Requirements
 
