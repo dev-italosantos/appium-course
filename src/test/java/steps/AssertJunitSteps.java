@@ -24,6 +24,7 @@ public class AssertJunitSteps {
         assertNotNull(string1);
         assertNull(string5);
         assertTrue(variable1 != variable2);
+        assertFalse(variable1 < variable2);
         assertArrayEquals(airethematicArrary1, airethematicArrary2);
     }
 }
